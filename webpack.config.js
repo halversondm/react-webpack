@@ -1,18 +1,28 @@
+var webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var path = require('path');
+
 module.exports = {
-  context: __dirname + "/app",
-  entry: { javascript: "./app.js", html: "./index.html" },
+  context: path.join(__dirname, '/app'),
+  entry: ['webpack-hot-middleware/client?reload=true', './main.js'],
   output: {
-    filename: "app/app.js",
-    path: __dirname + "/dist"
+    filename: '[name].js',
+    path: path.join(__dirname, '/dist'),
+    publicPath: '/'
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: 'index.tpl.html',
+      inject: 'body',
+      filename: 'index.html'
+    }),
+    new webpack.HotModuleReplacementPlugin()
+  ],
   module: {
     loaders: [{
       test: /\.js$/,
       exclude: /node_modules/,
-      loaders: ["babel-loader"]
-    }, {
-      test: /\.html$/,
-      loader: "file?name=[name].[ext]"
+      loader: "babel"
     }]
   }
 }
