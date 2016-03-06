@@ -1,35 +1,28 @@
+'use strict';
+
 import React from 'react';
 import $ from 'jquery';
+import SearchBar from 'solr-reaction/app/SearchBar';
 
-var Greeting = React.createClass({
-  getInitialState: function() {
-    return ({ data: {} });
-  },
-  componentDidMount: function() {
-    $.ajax({
-        url: 'http://dev.markitondemand.com/Api/v2/Quote/jsonp?jsoncallback=JSON_CALLBACK&symbol=MSFT',
-        dataType: 'jsonp'
-      })
-      .done(function(data) {
-        this.setState({ data: data });
-        console.log("success");
-      }.bind(this))
-      .fail(function() {
-        this.setState({ data: { NotFound: 'No Data is available' } });
-      }.bind(this));
-  },
-  render: function() {
-    return (
-      <div className="greeting">
-         {Object.keys(this.state.data).map(function(value, index) {
-             return (<div key={index}><h3>{value}</h3>{this.state.data[value]}</div>)
-         }.bind(this))
+export default class Greeting extends React.Component {
+    constructor() {
+        super();
+    }
 
-         }
-      </div>
-    );
-  }
+    render() {
+        return (
+            <div className="container-fluid">
+                <h3>Hello, {this.props.name}!</h3>
 
-});
+            </div>
+        );
+    }
+}
 
-export default Greeting;
+Greeting.propTypes = {
+    name: React.PropTypes.string.isRequired
+};
+
+Greeting.defaultProps = {
+    name: ''
+};
