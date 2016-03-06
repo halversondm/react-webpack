@@ -2,7 +2,6 @@
 
 import React from 'react';
 import $ from 'jquery';
-import SearchBar from 'solr-reaction/app/SearchBar';
 
 export default class Greeting extends React.Component {
     constructor() {

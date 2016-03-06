@@ -2,7 +2,7 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Greeting from './Greeting.js';
+import Greeting from './greeting.js';
 import $ from 'jquery/dist/jquery.js';
 import bootstrapCSS from 'bootstrap/dist/css/bootstrap.css';
 import bootstrapJS from 'bootstrap/dist/js/bootstrap.js';
